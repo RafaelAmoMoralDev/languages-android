@@ -1,0 +1,38 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+  <style name="Languages" parent="@style/Theme.Material3.DayNight.NoActionBar">
+    <!-- Colors -->
+    <item name="colorPrimary">@color/primary</item>
+    <item name="colorPrimaryVariant">@color/primary_light</item>
+    <item name="colorOnPrimary">@color/black</item>
+    <item name="colorSecondary">@color/secondary</item>
+    <item name="colorSecondaryVariant">@color/secondary_light</item>
+    <item name="colorOnSecondary">@color/black</item>
+    <item name="android:statusBarColor" tools:targetApi="l">@color/white</item>
+
+    <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationView</item>
+    <item name="windowNoTitle">true</item>
+  </style>
+
+  <style name="Languages.SplashScreen" parent="Theme.SplashScreen">
+    <item name="android:windowLightStatusBar">true</item>
+    <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
+    <!--Set the splash screen background, animated icon, and animation duration.-->
+    <item name="windowSplashScreenBackground">@color/white</item>
+    <!-- Use windowSplashScreenAnimatedIcon to add either a drawable or an-->
+    <!-- animated drawable. One of these is required.-->
+    <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+    <!-- Set the theme of the Activity that directly follows your splash screen.-->
+    <item name="postSplashScreenTheme">@style/Languages</item> <!--Required -->
+  </style>
+
+  <style name="Widget.App.BottomNavigationView" parent="Widget.Material3.BottomNavigationView">
+    <item name="materialThemeOverlay">@style/ThemeOverlay.Languages.BottomNavigationView</item>
+  </style>
+
+  <style name="ThemeOverlay.Languages.BottomNavigationView" parent="">
+    <item name="colorPrimary">@color/white</item>
+    <item name="colorOnPrimary">@color/black</item>
+  </style>
+
+</resources>

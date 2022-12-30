@@ -1,0 +1,97 @@
+plugins {
+    id "com.android.application"
+    id "org.jetbrains.kotlin.android"
+    id "kotlin-kapt"
+    id "kotlin-parcelize"
+    id "dagger.hilt.android.plugin"
+    id "androidx.navigation.safeargs.kotlin"
+}
+
+android {
+    compileSdk 32
+
+    defaultConfig {
+        applicationId "learning.rafaamo.languages"
+        minSdk 23
+        targetSdk 32
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField "String", "API_URL", '"https://api.languages.gavisa"'
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+        }
+    }
+    compileOptions {
+        coreLibraryDesugaringEnabled true
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = "11"
+        freeCompilerArgs = ["-Xjvm-default=all"]
+    }
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+    }
+}
+
+dependencies {
+    coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:1.1.5"
+    implementation "androidx.core:core-ktx:1.8.0"
+    implementation "androidx.appcompat:appcompat:1.5.1"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.5.1"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
+    implementation "androidx.legacy:legacy-support-v4:1.0.0"
+
+    // Views
+    implementation "androidx.fragment:fragment-ktx:1.5.4"
+    implementation "androidx.core:core-splashscreen:1.0.0"
+    implementation "com.google.android.material:material:1.7.0"
+    implementation "androidx.annotation:annotation:1.5.0"
+    implementation "androidx.constraintlayout:constraintlayout:2.1.4"
+    implementation "androidx.navigation:navigation-fragment:2.5.3"
+    implementation "androidx.recyclerview:recyclerview:1.2.1"
+    implementation "io.coil-kt:coil:2.2.2"
+
+    // Navigation
+    def nav_version = "2.5.3"
+    implementation "androidx.navigation:navigation-runtime-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    // Tests
+    testImplementation "junit:junit:4.13.2"
+    androidTestImplementation "androidx.test.ext:junit:1.1.4"
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.5.0"
+
+    // Hilt
+    def hilt = "2.42"
+    implementation "com.google.dagger:hilt-android:$hilt"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt"
+    kapt "androidx.hilt:hilt-compiler:1.0.0"
+
+    // Retrofit
+    def retrofit = "2.9.0"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
+    implementation "com.google.code.gson:gson:2.8.9"
+
+    // Coroutines
+    def coroutines = "2.5.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$coroutines"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$coroutines"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$coroutines"
+
+    // Room
+    def room_version = "2.4.3"
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
+}

@@ -1,0 +1,40 @@
+<resources>
+  <!-- No translatable -->
+  <string name="preference_file_key" translatable="false">preferences</string>
+  <string name="preference_user_token_key" translatable="false">USER_TOKEN</string>
+  <string name="preference_user_id_key" translatable="false">USER_ID</string>
+
+  <!-- General -->
+  <string name="app_name" >languages</string>
+  <string name="email_hint">Email</string>
+  <string name="name_hint">Name</string>
+  <string name="password_hint">Password</string>
+  <string name="error_unknown">Unknown error.</string>
+  <string name="error_user_not_found">User not found</string>
+  <string name="error_invalid_password">Invalid password</string>
+  <string name="menu_list">List</string>
+  <string name="menu_profile">Profile</string>
+
+  <!-- Views -->
+  <string name="fragment_sign_in_button">Sign in</string>
+  <string name="fragment_sign_in_sign_up">Click here to sign-up.</string>
+
+  <string name="fragment_sign_up_button">Sign up</string>
+
+  <string name="bottom_sheet_conversation_save">Save</string>
+  <string name="bottom_sheet_conversation_location_hint">Location</string>
+  <string name="bottom_sheet_conversation_date_hint">Date</string>
+
+  <string name="fragment_conversation_list_empty_no_conversations">You don\'t have any conversations this week.</string>
+
+  <string name="_user_description_label">Description</string>
+  <string name="_user_email_label">Email</string>
+  <string name="_user_phone_label">Phone</string>
+  <plurals name="_user_likes">
+    <item quantity="one">%d like</item>
+    <item quantity="other">%d likes</item>
+  </plurals>
+
+  <string name="fragment_profile_error_conversations">There was an error with your conversations…</string>
+
+</resources>

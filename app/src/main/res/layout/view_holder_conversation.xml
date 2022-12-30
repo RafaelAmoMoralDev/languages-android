@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content">
+
+  <com.google.android.material.imageview.ShapeableImageView
+    android:id="@+id/imageView"
+    android:layout_width="@dimen/space_6"
+    android:layout_height="@dimen/space_6"
+    android:scaleType="centerCrop"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:shapeAppearanceOverlay="@style/circleImageView" />
+
+  <com.google.android.material.textview.MaterialTextView
+    android:id="@+id/tvUsername"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="10dp"
+    android:textColor="?attr/colorPrimary"
+    app:layout_constrainedWidth="true"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0"
+    app:layout_constraintStart_toEndOf="@+id/imageView"
+    app:layout_constraintTop_toTopOf="parent" />
+
+  <ImageView
+    android:id="@+id/imageLike"
+    android:layout_width="@dimen/space_1"
+    android:layout_height="@dimen/space_1"
+    android:layout_marginStart="@dimen/space_1"
+    android:src="@drawable/ic_baseline_thumb_up_24"
+    app:layout_constrainedWidth="true"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0"
+    app:layout_constraintStart_toEndOf="@+id/tvUsername"
+    app:layout_constraintTop_toTopOf="@id/tvLikesNumber"
+    app:layout_constraintBottom_toBottomOf="@id/tvLikesNumber"
+    app:tint="@color/primary" />
+
+  <com.google.android.material.textview.MaterialTextView
+    android:id="@+id/tvLikesNumber"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textColor="?attr/colorPrimary"
+    android:layout_marginStart="@dimen/space"
+    app:layout_constrainedWidth="true"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0"
+    app:layout_constraintStart_toEndOf="@+id/imageLike"
+    app:layout_constraintTop_toTopOf="parent" />
+
+  <com.google.android.material.textview.MaterialTextView
+    android:id="@+id/tvLocation"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constrainedWidth="true"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0"
+    app:layout_constraintStart_toStartOf="@+id/tvUsername"
+    app:layout_constraintTop_toBottomOf="@id/tvUsername" />
+
+  <com.google.android.material.textview.MaterialTextView
+    android:id="@+id/tvDate"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constrainedWidth="true"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0"
+    app:layout_constraintStart_toStartOf="@+id/tvUsername"
+    app:layout_constraintTop_toBottomOf="@id/tvLocation" />
+
+  <com.google.android.material.button.MaterialButton
+    android:id="@+id/btEdit"
+    style="?attr/materialIconButtonStyle"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:icon="@drawable/ic_baseline_edit_calendar_24"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
