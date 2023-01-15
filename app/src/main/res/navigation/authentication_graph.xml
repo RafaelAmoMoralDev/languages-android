@@ -7,7 +7,7 @@
 
   <fragment
     android:id="@+id/signin"
-    android:name="learning.rafaamo.languages.ui.view.authentication.signin.SignInFragment"
+    android:name="learning.rafaamo.languages.presentation.ui.authentication.signin.SignInFragment"
     tools:layout="@layout/fragment_signin" >
     <action
       android:id="@+id/action_signin_to_signup"
@@ -16,7 +16,7 @@
 
   <fragment
     android:id="@+id/signup"
-    android:name="learning.rafaamo.languages.ui.view.authentication.signup.SignUpFragment"
+    android:name="learning.rafaamo.languages.presentation.ui.authentication.signup.SignUpFragment"
     tools:layout="@layout/fragment_signup" />
 
 </navigation>

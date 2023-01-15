@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/list"
+  app:startDestination="@id/frag_list">
+
+  <fragment
+    android:id="@+id/frag_list"
+    android:name="learning.rafaamo.languages.presentation.ui.main.conversation.list.ConversationListFragment"
+    android:label="list"
+    tools:layout="@layout/fragment_conversation_list">
+    <action
+      android:id="@+id/action_Profile_to_userDetail"
+      app:destination="@id/userDetail"
+      />
+  </fragment>
+
+  <fragment
+    android:id="@+id/userDetail"
+    android:name="learning.rafaamo.languages.presentation.ui.main.profile.ProfileFragment"
+    android:label="{name}"
+    tools:layout="@layout/fragment_profile">
+    <argument
+      android:name="id"
+      app:argType="long" />
+    <argument
+      android:name="name"
+      app:argType="string" />
+  </fragment>
+
+</navigation>

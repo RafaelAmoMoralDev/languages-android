@@ -7,7 +7,7 @@
 
     <variable
       name="form"
-      type="learning.rafaamo.languages.ui.view.content.conversation.bottom_sheet.ConversationForm" />
+      type="learning.rafaamo.languages.presentation.ui.main.conversation.bottom_sheet.ConversationForm" />
 
     <variable
       name="loading"

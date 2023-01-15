@@ -6,7 +6,7 @@
 
     <variable
       name="form"
-      type="learning.rafaamo.languages.ui.view.authentication.signup.SignUpForm" />
+      type="learning.rafaamo.languages.presentation.ui.authentication.signup.SignUpForm" />
 
     <variable
       name="loading"

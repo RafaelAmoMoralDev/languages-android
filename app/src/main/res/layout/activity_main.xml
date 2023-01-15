@@ -5,7 +5,7 @@
   android:id="@+id/container"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  tools:context=".ui.view.MainActivity">
+  tools:context=".presentation.ui.MainActivity">
 
   <androidx.appcompat.widget.Toolbar
     android:id="@+id/toolbar"
@@ -31,6 +31,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:layout_constraintBottom_toBottomOf="parent"
-    app:menu="@menu/content_menu" />
+    app:menu="@menu/bottom_nav_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

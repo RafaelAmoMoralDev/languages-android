@@ -1,56 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools"
   android:id="@+id/main_graph"
-  app:startDestination="@+id/list">
+  app:startDestination="@id/list">
 
-  <navigation android:id="@+id/list"
-    app:startDestination="@id/frag_list">
-    <fragment
-      android:id="@+id/frag_list"
-      android:name="learning.rafaamo.languages.ui.view.content.conversation.list.ConversationListFragment"
-      android:label="list"
-      tools:layout="@layout/fragment_conversation_list">
-      <action
-        android:id="@+id/action_Profile_to_userDetail"
-        app:destination="@id/userDetail">
-      </action>
-    </fragment>
-
-    <fragment
-      android:id="@+id/userDetail"
-      android:name="learning.rafaamo.languages.ui.view.content.profile.ProfileFragment"
-      android:label="{name}"
-      tools:layout="@layout/fragment_profile">
-      <argument android:name="id" app:argType="long"/>
-      <argument android:name="name" app:argType="string"/>
-    </fragment>
-
-  </navigation>
-
-  <navigation android:id="@+id/profile"
-    app:startDestination="@id/frag_profile">
-    <fragment
-      android:id="@+id/frag_profile"
-      android:name="learning.rafaamo.languages.ui.view.content.profile.ProfileFragment"
-      android:label="profile"
-      tools:layout="@layout/fragment_profile">
-      <action
-        android:id="@+id/action_Profile_to_userDetail"
-        app:destination="@id/userDetail">
-      </action>
-    </fragment>
-
-    <fragment
-      android:id="@+id/userDetail"
-      android:name="learning.rafaamo.languages.ui.view.content.profile.ProfileFragment"
-      android:label="{name}"
-      tools:layout="@layout/fragment_profile">
-      <argument android:name="id" app:argType="long"/>
-      <argument android:name="name" app:argType="string"/>
-    </fragment>
-
-  </navigation>
+  <include app:graph="@navigation/list"/>
+  <include app:graph="@navigation/profile"/>
 
 </navigation>

@@ -2,7 +2,6 @@
   <!-- No translatable -->
   <string name="preference_file_key" translatable="false">preferences</string>
   <string name="preference_user_token_key" translatable="false">USER_TOKEN</string>
-  <string name="preference_user_id_key" translatable="false">USER_ID</string>
 
   <!-- General -->
   <string name="app_name" >languages</string>
@@ -14,6 +13,7 @@
   <string name="error_invalid_password">Invalid password</string>
   <string name="menu_list">List</string>
   <string name="menu_profile">Profile</string>
+  <string name="menu_log_out">Log out</string>
 
   <!-- Views -->
   <string name="fragment_sign_in_button">Sign in</string>

@@ -6,7 +6,7 @@
     <import type="android.view.View" />
     <variable
       name="user"
-      type="learning.rafaamo.languages.data.datasource.entity.User" />
+      type="learning.rafaamo.languages.domain.entity.user.IUser" />
   </data>
 
   <androidx.constraintlayout.widget.ConstraintLayout
@@ -47,8 +47,6 @@
           style="@style/Widget.Material3.Chip.Suggestion"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:text="@{@plurals/_user_likes(user.likes, user.likes)}"
-          android:checked="@{user.liked}"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toBottomOf="@+id/imageView" />
