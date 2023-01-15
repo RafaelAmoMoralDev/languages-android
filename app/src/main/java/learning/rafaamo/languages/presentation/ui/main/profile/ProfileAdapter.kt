@@ -6,14 +6,13 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
 import learning.rafaamo.languages.R
 import learning.rafaamo.languages.databinding.UserBinding
 import learning.rafaamo.languages.databinding.ViewHolderConversationBinding
 import learning.rafaamo.languages.databinding.ViewHolderLoaderBinding
 import learning.rafaamo.languages.domain.entity.user.AppUser
 import learning.rafaamo.languages.domain.entity.user.User
-import learning.rafaamo.languages.presentation.util.Util
+import learning.rafaamo.languages.presentation.ui.main.ConversationViewHolder
 import learning.rafaamo.languages.presentation.ui.main.IConversationItem
 import learning.rafaamo.languages.presentation.ui.main.profile.ProfileItem.*
 
@@ -126,42 +125,6 @@ class ProfileAdapter(
     fun bind() {
       loaderView.apply {
         loader.show()
-      }
-    }
-
-  }
-
-  // TODO: Unificar ambos ConversationViewHolder
-  class ConversationViewHolder(private val conversationView: ViewHolderConversationBinding): RecyclerView.ViewHolder(conversationView.root) {
-
-    fun bind(conversationItem: IConversationItem) {
-      val conversation = conversationItem.conversation
-
-      conversationView.apply {
-        tvUsername.apply {
-          text = conversation.IUser.name
-          setOnClickListener {
-            conversationItem.onUserClicked()
-          }
-        }
-        tvLikesNumber.text = conversation.IUser.likes.toString()
-        imageView.apply {
-          isVisible = conversation.IUser.image != null
-          load(conversation.IUser.image)
-        }
-        tvLocation.text = conversation.location
-        tvDate.text = Util.parseDate(conversation.datetime)
-
-        if (conversationItem.onEditClicked == null) {
-          btEdit.isVisible = false
-        } else {
-          btEdit.apply {
-            isVisible = true
-            setOnClickListener {
-              conversationItem.onEditClicked?.invoke()
-            }
-          }
-        }
       }
     }
 

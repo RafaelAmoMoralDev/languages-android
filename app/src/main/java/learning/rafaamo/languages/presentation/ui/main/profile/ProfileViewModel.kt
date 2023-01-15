@@ -73,9 +73,9 @@ class ProfileViewModel @Inject constructor(
                   ConversationItem(
                     conversation, onUserClicked = {
                       viewModelScope.launch {
-                        _userToRedirect.emit(conversation.IUser)
+                        _userToRedirect.emit(conversation.user)
                       }
-                    }, onEditClicked = null
+                    }
                   )
                 })
               }

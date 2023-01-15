@@ -38,6 +38,6 @@ sealed class ProfileItem {
   object LoaderItem : ProfileItem()
 
   class ConversationItem(
-    override val conversation: Conversation, override val onUserClicked: () -> Unit, override val onEditClicked: (() -> Unit)?
+    override val conversation: Conversation, override val onUserClicked: () -> Unit
   ) : ProfileItem(), IConversationItem
 }

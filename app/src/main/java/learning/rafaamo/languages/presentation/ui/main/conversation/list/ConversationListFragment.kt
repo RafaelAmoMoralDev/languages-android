@@ -11,11 +11,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import learning.rafaamo.languages.R
-import learning.rafaamo.languages.domain.entity.Conversation
-import learning.rafaamo.languages.domain.datasource.remote.util.*
 import learning.rafaamo.languages.databinding.FragmentConversationListBinding
-import learning.rafaamo.languages.presentation.util.ItemDecorator
+import learning.rafaamo.languages.domain.datasource.remote.util.Resource
 import learning.rafaamo.languages.presentation.ui.main.conversation.bottom_sheet.ConversationBottomSheet
+import learning.rafaamo.languages.presentation.util.ItemDecorator
 
 @AndroidEntryPoint
 class ConversationListFragment: Fragment() {
@@ -52,9 +51,25 @@ class ConversationListFragment: Fragment() {
         }
       }
     }
+
+    viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+      viewModel.conversationToEdit.collect { conversation ->
+        ConversationBottomSheet.newInstance(
+          learning.rafaamo.languages.presentation.ui.main.conversation.bottom_sheet.Conversation(conversation.id, conversation.location, conversation.datetime)
+        ).show(this@ConversationListFragment.childFragmentManager, ConversationBottomSheet.TAG)
+      }
+    }
+
+    viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+      viewModel.userToRedirect.collect { user ->
+        binding.root.findNavController().navigate(
+          ConversationListFragmentDirections.actionProfileToUserDetail(user.id, user.name)
+        )
+      }
+    }
   }
 
-  private fun onDataLoaded(list: List<Conversation>) {
+  private fun onDataLoaded(list: List<ConversationListViewModel.ConversationItem>) {
     binding.loader.hide()
 
     if (list.isEmpty()) {
@@ -67,22 +82,11 @@ class ConversationListFragment: Fragment() {
     }
   }
 
-  private fun setList(list: List<Conversation>) {
+  private fun setList(list: List<ConversationListViewModel.ConversationItem>) {
     // TODO: Comprobar si es correcto
     // De esta forma instanciamos el adaptador solamente una vez, la primera en la que obtengamos datos.
     if (this@ConversationListFragment.adapter == null) {
-      this@ConversationListFragment.adapter = ConversationAdapter(
-        onUserClicked = {
-          binding.root.findNavController().navigate(
-            ConversationListFragmentDirections.actionProfileToUserDetail(it.id, it.name)
-          )
-        },
-        onEditClicked = {
-          ConversationBottomSheet.newInstance(
-            learning.rafaamo.languages.presentation.ui.main.conversation.bottom_sheet.Conversation(it.id, it.location, it.datetime)
-          ).show(this@ConversationListFragment.childFragmentManager, ConversationBottomSheet.TAG)
-        }
-      )
+      this@ConversationListFragment.adapter = ConversationAdapter()
       binding.list.apply {
         addItemDecoration(ItemDecorator(resources.getDimensionPixelSize(R.dimen.space_6)))
         adapter = this@ConversationListFragment.adapter

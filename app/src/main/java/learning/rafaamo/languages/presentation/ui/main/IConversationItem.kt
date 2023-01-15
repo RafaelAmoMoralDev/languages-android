@@ -6,6 +6,5 @@ interface IConversationItem {
 
   val conversation: Conversation
   val onUserClicked: () -> Unit
-  val onEditClicked: (() -> Unit)?
 
 }
