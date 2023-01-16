@@ -18,8 +18,6 @@ class AppAuthentication @Inject constructor(private val app: App) {
     return sharedPref.getString(userTokenKey, null)
   }
 
-  //TODO: Estudiar después del proyeto - Cuando debo de usar
-  // https://www.youtube.com/watch?v=aaSck7jBDbw&ab_channel=PhilippLackner
   fun storeUserToken(token: String?) {
     val sharedPref = app.getSharedPreferences(file, Context.MODE_PRIVATE) ?: return
     with(sharedPref.edit()) {

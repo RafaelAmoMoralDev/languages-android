@@ -14,12 +14,10 @@ class ItemDecorator(private val size: Int, private val shouldAddHorizontalSpace:
       val itemCount = state.itemCount
       val isLastPosition = position == (itemCount - 1)
 
-      // Saved size
       val sizeBasedOnEdge = size
       val sizeBasedOnFirstPosition = if (isFirstPosition) sizeBasedOnEdge else size
       val sizeBasedOnLastPosition = if (isLastPosition) sizeBasedOnEdge else 0
 
-      // Update properties
       with(outRect) {
         if (shouldAddHorizontalSpace) {
           left = sizeBasedOnEdge

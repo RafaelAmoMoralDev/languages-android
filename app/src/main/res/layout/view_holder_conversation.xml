@@ -36,8 +36,7 @@
     app:layout_constraintHorizontal_bias="0"
     app:layout_constraintStart_toEndOf="@+id/tvUsername"
     app:layout_constraintTop_toTopOf="@id/tvLikesNumber"
-    app:layout_constraintBottom_toBottomOf="@id/tvLikesNumber"
-    app:tint="@color/primary" />
+    app:layout_constraintBottom_toBottomOf="@id/tvLikesNumber"/>
 
   <com.google.android.material.textview.MaterialTextView
     android:id="@+id/tvLikesNumber"

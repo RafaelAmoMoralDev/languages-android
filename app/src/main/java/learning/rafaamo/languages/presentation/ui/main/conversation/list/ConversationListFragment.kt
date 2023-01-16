@@ -83,8 +83,6 @@ class ConversationListFragment: Fragment() {
   }
 
   private fun setList(list: List<ConversationListViewModel.ConversationItem>) {
-    // TODO: Comprobar si es correcto
-    // De esta forma instanciamos el adaptador solamente una vez, la primera en la que obtengamos datos.
     if (this@ConversationListFragment.adapter == null) {
       this@ConversationListFragment.adapter = ConversationAdapter()
       binding.list.apply {
@@ -99,8 +97,6 @@ class ConversationListFragment: Fragment() {
 
   override fun onDestroyView() {
     super.onDestroyView()
-    // Igualamos el adaptador a null para que si volvemos a este fragmento sea el método setList el encargador de inicializar la lista
-    // si es la primera vez que hemos obtenido algún dato.
     adapter = null
   }
 

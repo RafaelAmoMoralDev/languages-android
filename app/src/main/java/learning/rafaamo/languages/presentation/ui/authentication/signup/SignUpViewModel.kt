@@ -23,7 +23,6 @@ class SignUpViewModel @Inject constructor(
 
   val form = SignUpForm(savedStateHandle)
 
-  //TODO: Estudiar después del proyeto - Diferencia entre shared flow y state flow
   private var _signUpResponse: MutableSharedFlow<Resource<Unit, AppError>> = MutableSharedFlow()
   val signUpResponse: SharedFlow<Resource<Unit, AppError>> = _signUpResponse
 

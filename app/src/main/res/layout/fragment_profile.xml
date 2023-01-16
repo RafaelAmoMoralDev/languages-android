@@ -24,7 +24,6 @@
     android:layout_height="wrap_content"
     android:indeterminate="true"
     android:visibility="gone"
-    app:indicatorColor="@color/primary"
     app:indicatorSize="30dp"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"

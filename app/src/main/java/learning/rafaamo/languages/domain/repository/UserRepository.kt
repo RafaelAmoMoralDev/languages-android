@@ -17,7 +17,6 @@ import learning.rafaamo.languages.domain.entity.user.User
 import javax.inject.Inject
 import javax.inject.Singleton
 
-//TODO: Estudiar después del proyecto - debería de ser singleton siempre?
 @Singleton
 class UserRepository @Inject constructor(
   api: API,
@@ -33,7 +32,6 @@ class UserRepository @Inject constructor(
   }
 
   suspend fun signIn(email: String, password: String): Resource<Unit, SignInError> {
-    //TODO: Estudiar después del proyecto - retrofit usa su propio hilo concurrente
     return when (val response = api.signIn(email, password)) {
       is ApiResponse.Success -> {
         appUserAuthentication.storeUserToken(response.body.authToken)
