@@ -4,7 +4,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.withContext
 import learning.rafaamo.languages.domain.entity.Conversation
-import learning.rafaamo.languages.domain.entity.user.IUser
 import learning.rafaamo.languages.domain.datasource.local.ConversationDAO
 import learning.rafaamo.languages.domain.datasource.local.UserDAO
 import learning.rafaamo.languages.domain.datasource.local.dto.ConversationDTO
@@ -29,7 +28,7 @@ class ConversationRepository @Inject constructor(
   private val api: ConversationAPI = api
 
   private suspend fun _getAll(): ApiResponse<List<ConversationResponse>> {
-    val response = api.getAll()
+    val response = api.getAllConversations()
 
     if (response is ApiResponse.Success) {
       val conversationDTOs: MutableList<ConversationDTO> = mutableListOf()
@@ -112,13 +111,27 @@ class ConversationRepository @Inject constructor(
   suspend fun update(conversation: learning.rafaamo.languages.presentation.ui.main.conversation.bottom_sheet.Conversation): Resource<Unit, Unit> {
     withContext(Dispatchers.IO) {
       conversation.apply {
-        conversationDAO.update(id, location, datetime)
+        conversationDAO.update(id!!, location, datetime)
       }
     }
 
-    return when (api.update(conversation.id, conversation)) {
+    return when (api.update(conversation.id!!, conversation)) {
       is ApiResponse.Success -> Resource.Success(Unit)
       is ApiResponse.Empty -> Resource.Success(Unit)
+      is ApiResponse.Error -> Resource.Error(null)
+      is ApiResponse.NetworkError -> Resource.Error(null)
+    }
+  }
+
+  suspend fun create(conversation: learning.rafaamo.languages.presentation.ui.main.conversation.bottom_sheet.Conversation): Resource<Unit, Unit> {
+    return when (val response = api.create(conversation.location, conversation.datetime)) {
+      is ApiResponse.Success -> {
+        response.body.let { conversation ->
+          conversationDAO.insert(ConversationDTO(conversation.id, conversation.location, conversation.datetime, conversation.userResponse.id, conversation.createdAt, conversation.updatedAt))
+        }
+        Resource.Success(Unit)
+      }
+      is ApiResponse.Empty -> Resource.Error(null)
       is ApiResponse.Error -> Resource.Error(null)
       is ApiResponse.NetworkError -> Resource.Error(null)
     }

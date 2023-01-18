@@ -7,13 +7,14 @@ private enum class SavedStateKeys { LOCATION, DATE }
 
 class ConversationForm(
   savedStateHandle: SavedStateHandle,
-  _location: String,
-  private var _dateMs: Long
+  _location: String?,
+  private var _dateMs: Long?
 ): ViewModel() {
 
-  var location: MutableLiveData<String> = savedStateHandle.getLiveData(SavedStateKeys.LOCATION.name, _location)
-  private var _date: MutableLiveData<String> = savedStateHandle.getLiveData(SavedStateKeys.DATE.name, Util.parseDate(_dateMs))
-  var date = _date as LiveData<String>
+  var location: MutableLiveData<String?> = savedStateHandle.getLiveData(SavedStateKeys.LOCATION.name, _location)
+
+  private var _date: MutableLiveData<String?> = savedStateHandle.getLiveData(SavedStateKeys.DATE.name, if (_dateMs != null) Util.parseDate(_dateMs!!) else null)
+  var date = _date as LiveData<String?>
 
   val valid = MediatorLiveData<Boolean>().apply {
     addSource(location) { value = isValid() }
@@ -25,12 +26,12 @@ class ConversationForm(
     _date.value = Util.parseDate(dateMs, false)
   }
 
-  fun getDateMs(): Long {
+  fun getDateMs(): Long? {
     return _dateMs
   }
 
   private fun isValid() : Boolean {
-    return location.value!!.isNotBlank() && date.value!!.isNotBlank()
+    return location.value?.isNotBlank()?: false && date.value?.isNotBlank()?:false
   }
 
 }

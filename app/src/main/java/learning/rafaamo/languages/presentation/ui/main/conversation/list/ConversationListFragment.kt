@@ -67,6 +67,11 @@ class ConversationListFragment: Fragment() {
         )
       }
     }
+
+    binding.fab.setOnClickListener {
+      ConversationBottomSheet.newInstance(null)
+        .show(this@ConversationListFragment.childFragmentManager, ConversationBottomSheet.TAG)
+    }
   }
 
   private fun onDataLoaded(list: List<ConversationListViewModel.ConversationItem>) {

@@ -11,6 +11,9 @@ interface ConversationDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(conversations: List<ConversationDTO>)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(conversation: ConversationDTO)
+
     @Query("SELECT * FROM conversation WHERE id IN (:ids)")
     fun get(ids: List<Long>): Flow<List<ConversationWithUser>>
 

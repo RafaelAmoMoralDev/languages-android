@@ -14,6 +14,9 @@ class NetworkResponseCall<S>(private val delegate: Call<S>) : Call<ApiResponse<S
         return delegate.enqueue(object : Callback<S> {
 
             override fun onResponse(call: Call<S>, response: Response<S>) {
+                println("ON RESPONSE")
+                println(response.body())
+
                 val formattedResponse: ApiResponse<S> = if (response.isSuccessful) {
                     if (response.body() == null || response.code() == 204) {
                         ApiResponse.Empty()

@@ -49,9 +49,8 @@ class ProfileViewModel @Inject constructor(
 
   private fun loadUserApp() {
     viewModelScope.launch {
-      userRepository.me().collect { userResponse ->
-        processUserResponse(userResponse)
-      }
+      _uiState.emit(_uiState.value.copy(userLoading = true))
+      processUserResponse(userRepository.me())
     }
 
     viewModelScope.launch {

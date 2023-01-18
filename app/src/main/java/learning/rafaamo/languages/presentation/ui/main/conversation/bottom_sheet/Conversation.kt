@@ -5,7 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Conversation (
-  val id: Long,
+  val id: Long?,
   val location: String,
   val datetime: Long
 ): Parcelable

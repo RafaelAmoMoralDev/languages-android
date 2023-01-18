@@ -6,13 +6,13 @@ import kotlinx.coroutines.flow.flow
 import learning.rafaamo.languages.common.AppAuthentication
 import learning.rafaamo.languages.domain.entity.AppError
 import learning.rafaamo.languages.domain.entity.ErrorResponse
-import learning.rafaamo.languages.domain.entity.user.IUser
 import learning.rafaamo.languages.domain.datasource.local.UserDAO
 import learning.rafaamo.languages.domain.datasource.local.dto.UserDTO
 import learning.rafaamo.languages.domain.datasource.remote.API
 import learning.rafaamo.languages.domain.datasource.remote.UserAPI
 import learning.rafaamo.languages.domain.datasource.remote.util.*
 import learning.rafaamo.languages.domain.entity.user.AppUser
+import learning.rafaamo.languages.domain.entity.user.BasicUser
 import learning.rafaamo.languages.domain.entity.user.User
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -69,21 +69,17 @@ class UserRepository @Inject constructor(
     }
   }
 
-  suspend fun me(): Flow<Resource<AppUser, AppError>> {
-    return flow {
-      emit(Resource.Load(null))
-
-      when (val response = api.me()) {
-        is ApiResponse.Success -> {
-          val user = response.body
-          emit(Resource.Success(AppUser(user.id, user.name, user.email, user.phone, user.description, user.image, user.likes)))
-        }
-        is ApiResponse.Empty -> emit(Resource.Error(null))
-        is ApiResponse.Error -> {
-          emit(Resource.Error(response.errorsResponse))
-        }
-        is ApiResponse.NetworkError -> emit(Resource.Error(null))
+  suspend fun me(): Resource<AppUser, AppError> {
+    return when (val response = api.me()) {
+      is ApiResponse.Success -> {
+        val user = response.body
+        Resource.Success(AppUser(user.id, user.name, user.email, user.phone, user.description, user.image, user.likes))
       }
+      is ApiResponse.Empty -> Resource.Error(null)
+      is ApiResponse.Error -> {
+        Resource.Error(response.errorsResponse)
+      }
+      is ApiResponse.NetworkError -> Resource.Error(null)
     }
   }
 
@@ -105,6 +101,22 @@ class UserRepository @Inject constructor(
         }
         is ApiResponse.NetworkError -> emit(Resource.Error(null))
       }
+    }
+  }
+
+  suspend fun getUsers(): Resource<List<BasicUser>, AppError> {
+    return when (val response = api.getAllUsers()) {
+      is ApiResponse.Success -> {
+        val users = response.body.map { (id, name) ->
+          BasicUser(id, name)
+        }
+        Resource.Success(users)
+      }
+      is ApiResponse.Empty -> Resource.Error(null)
+      is ApiResponse.Error -> {
+        Resource.Error(response.errorsResponse)
+      }
+      is ApiResponse.NetworkError -> Resource.Error(null)
     }
   }
 

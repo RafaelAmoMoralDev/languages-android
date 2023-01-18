@@ -1,11 +1,14 @@
 package learning.rafaamo.languages.presentation.util
 
+import android.content.res.ColorStateList
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.BindingAdapter
 import coil.load
 import com.google.android.material.textfield.TextInputLayout
+import learning.rafaamo.languages.R
 import learning.rafaamo.languages.domain.entity.ErrorResponse
 import java.time.*
 import java.time.format.DateTimeFormatter
@@ -80,7 +83,12 @@ object Util {
   @BindingAdapter("imageUrl")
   @JvmStatic
   fun ImageView.loadImage(url: String?) {
-    load(url)
+    if (url != null) {
+      load(url)
+    } else {
+      setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_baseline_account_circle_24, null))
+      imageTintList = ColorStateList.valueOf(ResourcesCompat.getColor(resources, R.color.md_theme_light_onSurfaceVariant, null))
+    }
   }
 
 }
