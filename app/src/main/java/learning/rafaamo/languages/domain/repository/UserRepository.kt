@@ -104,22 +104,6 @@ class UserRepository @Inject constructor(
     }
   }
 
-  suspend fun getUsers(): Resource<List<BasicUser>, AppError> {
-    return when (val response = api.getAllUsers()) {
-      is ApiResponse.Success -> {
-        val users = response.body.map { (id, name) ->
-          BasicUser(id, name)
-        }
-        Resource.Success(users)
-      }
-      is ApiResponse.Empty -> Resource.Error(null)
-      is ApiResponse.Error -> {
-        Resource.Error(response.errorsResponse)
-      }
-      is ApiResponse.NetworkError -> Resource.Error(null)
-    }
-  }
-
   suspend fun like(user: User): Resource<Unit, AppError> {
     val likes = if (user.liked) {
       user.likes - 1

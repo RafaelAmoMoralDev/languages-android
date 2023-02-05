@@ -31,9 +31,6 @@ interface UserAPI {
   @GET("$ENDPOINT/{id}")
   suspend fun get(@Path("id") id: Long): ApiResponse<BasicUserResponse>
 
-  @GET(ENDPOINT)
-  suspend fun getAllUsers(): ApiResponse<List<BasicUserResponse>>
-
   @PATCH("$ENDPOINT/{id}/like")
   suspend fun like(@Path("id") id: Long): ApiResponse<Unit>
 
