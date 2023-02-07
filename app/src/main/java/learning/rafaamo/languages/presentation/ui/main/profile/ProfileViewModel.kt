@@ -144,7 +144,9 @@ class ProfileViewModel @Inject constructor(
   }
 
   fun logOut() {
-    appUserAuthentication.storeUserToken(null)
+    viewModelScope.launch {
+      appUserAuthentication.storeUserToken(null)
+    }
   }
 
 }

@@ -49,9 +49,7 @@ class SignUpFragment : Fragment() {
           is Resource.Load -> {
             cleanFormErrors(binding.root)
           }
-          is Resource.Success -> {
-            findNavController().setGraph(R.navigation.main_graph)
-          }
+          is Resource.Success -> {}
           is Resource.Error -> {
             if (response.error?.code != null) {
               showFormErrors(binding.root, response.error.errors)

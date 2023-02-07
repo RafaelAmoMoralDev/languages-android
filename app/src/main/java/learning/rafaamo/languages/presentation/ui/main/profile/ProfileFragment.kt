@@ -107,7 +107,6 @@ class ProfileFragment: Fragment() {
           return when (menuItem.itemId) {
             R.id.log_out -> {
               viewModel.logOut()
-              findNavController().setGraph(R.navigation.authentication_graph)
               true
             }
             else -> false

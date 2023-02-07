@@ -57,9 +57,7 @@ class SignInFragment : Fragment() {
               password.error = null
             }
           }
-          is Resource.Success -> {
-            findNavController().setGraph(R.navigation.main_graph)
-          }
+          is Resource.Success -> {}
           is Resource.Error -> {
             when (response.error?.code) {
               UserRepository.SignInError.Code.USER_NOT_FOUND.code -> {

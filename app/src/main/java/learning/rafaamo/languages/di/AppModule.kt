@@ -17,7 +17,7 @@ import learning.rafaamo.languages.domain.datasource.local.AppDatabase
 import learning.rafaamo.languages.domain.datasource.local.ConversationDAO
 import learning.rafaamo.languages.domain.datasource.local.UserDAO
 import learning.rafaamo.languages.domain.datasource.remote.API
-import learning.rafaamo.languages.domain.datasource.remote.util.ApiHeader
+import learning.rafaamo.languages.domain.datasource.remote.util.ApiInterceptor
 import learning.rafaamo.languages.domain.datasource.remote.util.CallAdapterFactory
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -31,7 +31,7 @@ class AppModule {
 
   @Singleton
   @Provides
-  fun provideAPI(headers: ApiHeader): API {
+  fun provideAPI(headers: ApiInterceptor): API {
     val okHttpClient = OkHttpClient()
       .newBuilder().readTimeout(60, TimeUnit.SECONDS).connectTimeout(60, TimeUnit.SECONDS)
       .addInterceptor(headers)

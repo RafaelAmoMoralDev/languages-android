@@ -1,7 +1,7 @@
 <resources>
   <!-- No translatable -->
   <string name="preference_file_key" translatable="false">preferences</string>
-  <string name="preference_user_token_key" translatable="false">USER_TOKEN</string>
+  <string name="preference_user_token_key" translatable="false">user_token</string>
 
   <!-- General -->
   <string name="app_name" >languages</string>
