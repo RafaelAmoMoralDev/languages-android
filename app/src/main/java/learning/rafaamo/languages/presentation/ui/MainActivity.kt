@@ -43,9 +43,15 @@ class MainActivity : AppCompatActivity() {
       repeatOnLifecycle(Lifecycle.State.STARTED) {
         appUserAuthentication.logged.collect { logged ->
           if (logged == true) {
-            navController.setGraph(R.navigation.main_graph)
+            navController.apply {
+              popBackStack()
+              setGraph(R.navigation.main_graph)
+            }
           } else {
-            navController.setGraph(R.navigation.authentication_graph)
+            navController.apply {
+              popBackStack()
+              setGraph(R.navigation.authentication_graph)
+            }
           }
         }
       }
